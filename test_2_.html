@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JestSet - Home</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+
+<body>
+    <header class="header--main">
+        <div class="header__content container-width">
+            <p class="header__logo">Logo Jetset</p>
+            <nav class="header__navbar">
+                <a href="#" class="header__navbar__item">Document</a>
+                <a href="#" class="header__navbar__item">Team</a>
+                <a href="#" class="header__navbar__item">Wallets</a>
+                <a href="#" class="header__navbar__item header__navbar__item--cta">Stay Connected</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="section--hero">
+            <div class="container-width hero__main-content">
+                <div class="hero__text-container">
+                    <h1 class="hero__headline">Jetset is for Travelers</h1>
+                    <p class="hero__desc">Streamlined travel ecosystem built on blockchain techonolgy</p>
+                    <a href="#" class="hero__cta">Get Started</a>
+                </div>
+                <img src="assets/travel.png" alt="" class="hero__img">
+            </div>
+            </div>
+        </section>
+        <section class="section--features">
+            <div class="container-width">
+                <div class="features-header">
+                    <h2>The Future of Travel Industry has arrived</h2>
+                    <p>We are building a new type of token will revolutionize travel</p>
+                </div>
+                <div class="features">
+                    <div class="item-feature">
+                        <div class="item-feature__icon">
+                            <i class="fa-solid fa-plane-up icon white-icon"></i>
+                        </div>
+                        <p class="item-feature__desc">Built for Travelers by <br> Travelers</p>
+                    </div>
+                    <div class="item-feature">
+                        <div class="item-feature__icon">
+                            <i class="fa-solid fa-dollar-sign icon white-icon"></i>
+                        </div>
+                        <p class="item-feature__desc">A $1.22 trillion dollar <br> industry annually</p>
+                    </div>
+                    <div class="item-feature">
+                        <div class="item-feature__icon">
+                            <i class="fa-solid fa-circle-nodes icon white-icon"></i>
+                        </div>
+                        <p class="item-feature__desc">Connecting the virtual <br> world with the real world</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- <section class="section--ajax">
+            <div class="container-width">
+                <button id="fetch-comments" class="ajax__button">Load Comments</button>
+                <table id="comments-table" class="ajax__table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Comment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <button id="highlight-rows" class="ajax__button">Highlight Rows</button>
+            </div>
+        </section> -->
+
+        <section class="section--ajax">
+            <div class="container-width">
+                <button id="fetch-comments" class="ajax__button">Load Comments</button>
+                <table id="comments-table" class="ajax__table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Comment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Table rows will be dynamically inserted here -->
+                    </tbody>
+                </table>
+                <button id="highlight-rows" class="ajax__button">Highlight Rows</button>
+                <button id="count-com-emails" class="ajax__button">Count .com Emails</button>
+                <p id="email-count-result" class="email__result"></p>
+            </div>
+        </section>
+
+    </main>
+    <footer></footer>
+
+    <script>
+        $(document).ready(function () {
+            $('#fetch-comments').click(function () {
+                $('#comments-table tbody').empty();
+
+                $('#comments-table').hide();
+                $('#fetch-comments').text('Loading...');
+
+                $.ajax({
+                    url: 'https://jsonplaceholder.typicode.com/comments',
+                    method: 'GET',
+                    success: function (data) {
+                        data.slice(0, 10).forEach(function (comment) {
+                            $('#comments-table tbody').append(`
+                                <tr>
+                                    <td>${comment.id}</td>
+                                    <td>${comment.name}</td>
+                                    <td>${comment.email}</td>
+                                    <td>${comment.body}</td>
+                                </tr>
+                            `);
+                        });
+
+                        // Show table and reset button text
+                        $('#comments-table').show();
+                        $('#fetch-comments').text('Load Comments');
+                    },
+                    error: function () {
+                        alert('Error loading comments. Please try again.');
+                        $('#fetch-comments').text('Load Comments');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#fetch-comments').click(function () {
+                $('#comments-table tbody').empty();
+                $('#comments-table').hide();
+                $('#fetch-comments').text('Loading...');
+
+                $.ajax({
+                    url: 'https://jsonplaceholder.typicode.com/comments',
+                    method: 'GET',
+                    success: function (data) {
+                        data.slice(0, 10).forEach(function (comment) {
+                            $('#comments-table tbody').append(`
+                            <tr>
+                                <td>${comment.id}</td>
+                                <td>${comment.name}</td>
+                                <td>${comment.email}</td>
+                                <td>${comment.body}</td>
+                            </tr>
+                        `);
+                        });
+
+                        $('#comments-table').show();
+                        $('#fetch-comments').text('Load Comments');
+                    },
+                    error: function () {
+                        alert('Error loading comments. Please try again.');
+                        $('#fetch-comments').text('Load Comments');
+                    }
+                });
+            });
+
+            $('#highlight-rows').click(function () {
+                $('#comments-table tbody tr').each(function (index) {
+                    $(this).removeClass('row-yellow row-green');
+                    if (index % 2 === 0) {
+                        $(this).addClass('row-yellow');
+                    } else {
+                        $(this).addClass('row-green');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Load comments
+            $('#fetch-comments').click(function () {
+                $('#comments-table tbody').empty();
+                $('#comments-table').hide();
+                $('#fetch-comments').text('Loading...');
+
+                $.ajax({
+                    url: 'https://jsonplaceholder.typicode.com/comments',
+                    method: 'GET',
+                    success: function (data) {
+                        data.slice(0, 10).forEach(function (comment) {
+                            $('#comments-table tbody').append(`
+                            <tr>
+                                <td>${comment.id}</td>
+                                <td>${comment.name}</td>
+                                <td>${comment.email}</td>
+                                <td>${comment.body}</td>
+                            </tr>
+                        `);
+                        });
+
+                        $('#comments-table').show();
+                        $('#fetch-comments').text('Load Comments');
+                    },
+                    error: function () {
+                        alert('Error loading comments. Please try again.');
+                        $('#fetch-comments').text('Load Comments');
+                    }
+                });
+            });
+
+            // Highlight rows
+            $('#highlight-rows').click(function () {
+                $('#comments-table tbody tr').each(function (index) {
+                    $(this).removeClass('row-yellow row-green');
+
+                    if (index % 2 === 0) {
+                        $(this).addClass('row-yellow');
+                    } else {
+                        $(this).addClass('row-green');
+                    }
+                });
+            });
+
+            // Count .com emails
+            $('#count-com-emails').click(function () {
+                let count = 0;
+
+                // Loop through each email in the table
+                $('#comments-table tbody tr').each(function () {
+                    const email = $(this).find('td:nth-child(3)').text();
+
+                    // Check if the email ends with '.com'
+                    if (email.endsWith('.com')) {
+                        count++;
+                    }
+                });
+
+                // Display the result
+                $('#email-count-result').text(`Number of .com emails: ${count}`);
+            });
+        });
+    </script>
+</body>
+
+</html>
