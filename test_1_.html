@@ -15,6 +15,9 @@
     <p>Tes yang Cross tekno</p>
     <p id="crosstech"></p>
 
+    <p>Tes array kota</p>
+    <p id="city"></p>
+
     <!-- test 1 -->
     <script>
         const n = 7777;
@@ -32,6 +35,19 @@
         const crossVal = document.getElementById("crosstech");
         crossVal.innerHTML = thename;
     </script>
+
+    <!-- test 3 -->
+     <script>
+        const arr = ["Surabaya", "Jakarta", "Semarang", "Makassar"];
+        const cityVal = document.getElementById("city");
+        cityVal.innerHTML = arr;
+
+        arr[2] = "Samarinda";
+        cityVal.innerHTML = arr;
+
+        arr.push("Aceh");
+        cityVal.innerHTML = arr;
+     </script>
 </body>
 
 </html>
