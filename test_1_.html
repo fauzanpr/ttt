@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <p>Menampilkan nilai</p>
+    <p id="thevalue"></p>
+
+    <p>Tes yang Cross tekno</p>
+    <p id="crosstech"></p>
+
+    <!-- test 1 -->
+    <script>
+        const n = 7777;
+        const formattedValue = new Intl.NumberFormat().format(n);
+        const theValue = document.getElementById("thevalue");
+        theValue.innerText = formattedValue;
+    </script>
+
+    <!-- test 2 -->
+    <script>
+        let thename = "Fauzan Pradana";
+        thename = "CrossTechnoDeveloper";
+        thename = thename.replaceAll('o', 'a');
+    
+        const crossVal = document.getElementById("crosstech");
+        crossVal.innerHTML = thename;
+    </script>
+</body>
+
+</html>
